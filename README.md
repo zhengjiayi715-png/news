@@ -82,3 +82,4 @@ pip install -r requirements.txt
 ## 致谢
 - 感谢 **B站/黑马程序员** 的《fastapi实战教程》，本项目的部分前端 UI 灵感与后端业务逻辑参考了该课程。
 - 感谢 **[@2205094557](https://github.com/2205094557)** ,你的wallpaper项目激励着我。
+- 感谢 **B站/李勃老师**,讲清了许多概念。
