@@ -38,10 +38,10 @@ async def get_news_list(
 async def get_news_detail(news_id:int=Query(...,alias="id"),db:AsyncSession=Depends(get_db)):
     news_detail=await news.get_news_detail(db,news_id)
     if news_detail is None:
-        return HTTPException(status_code=404,detail="新闻不存在")
+        raise HTTPException(status_code=404,detail="新闻不存在")
     views_res=await news.increase_news_views(db,news_id)
     if not(views_res):
-        return HTTPException(status_code=404,detail="新闻不存在")
+        raise HTTPException(status_code=404,detail="新闻不存在")
     related_news=await news.get_related_news(db,news_detail.category_id,news_id)
     return {
         "code": 200,

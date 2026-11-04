@@ -5,7 +5,7 @@ from fastapi.responses import JSONResponse
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 from starlette import status
 
-DEBUG_MODE = False
+DEBUG_MODE = True
 async def http_exception_handler(request: Request, exc: HTTPException):
     return JSONResponse(
     status_code=exc.status_code,

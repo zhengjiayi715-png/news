@@ -16,11 +16,11 @@ async def add_history(db: AsyncSession, user_id: int, news_id: int):
     existing_history = result.scalar_one_or_none()
     if existing_history:
         existing_history.view_time = datetime.now()
-        await db.refresh(existing_history)
         return existing_history
     else:
         history = History(user_id=user_id, news_id=news_id)
-        await db.refresh(history)
+        db.add(history)
+        await db.flush()
         return history
 
 async def get_history_list(db: AsyncSession, user_id: int, page: int = 1, page_size: int = 10):

@@ -16,7 +16,7 @@ async def is_news_favorite(db: AsyncSession,user_id:int,news_id:int):
 
 async def add_news_favorite(db: AsyncSession,user_id:int,news_id:int):
     favorite=Favorite(user_id=user_id,news_id=news_id)
-    await db.refresh(favorite)
+    db.add(favorite)
     return favorite
 
 async def remove_news_favorite(db: AsyncSession,user_id:int,news_id:int):

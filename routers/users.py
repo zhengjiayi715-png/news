@@ -8,9 +8,9 @@ from starlette import status
 from utils.response import success_response
 from utils.auth import get_current_user
 
-router = APIRouter(prefix="/api/users", tags=["users"])
+router = APIRouter(prefix="/api/user", tags=["users"])
 
-@router.post("register")
+@router.post("/register")
 async def register(user_data:UserRequest,db:AsyncSession=Depends(db_config.get_db)):
     existing_user=await users.get_user_by_username(db, user_data.username)
     if existing_user:
@@ -51,7 +51,9 @@ async def update_user_info(user_data:UserUpdateRequest,user:User=Depends(get_cur
 
 @router.put("/password")
 async def update_password(password_data:UserChangePasswordRequest,user:User=Depends(get_current_user),db:AsyncSession=Depends(db_config.get_db)):
-    res_change_pwd=await users.change_password(db,user,user.username,user.password)
+    res_change_pwd = await users.change_password(
+        db, user, password_data.old_password, password_data.new_password
+    )
     if not res_change_pwd:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Incorrect password")
     return success_response(message="User created successfully")

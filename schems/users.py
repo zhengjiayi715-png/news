@@ -32,5 +32,6 @@ class UserUpdateRequest(BaseModel):
     phone_number: str
 
 class UserChangePasswordRequest(BaseModel):
-    old_password: str=Field(...,alias="old_password",description="旧密码")
-    new_password: str=Field(...,min_length=6,alias="new_password",description="新密码")
+    old_password: str = Field(..., alias="oldPassword")
+    new_password: str = Field(..., min_length=6, alias="newPassword")
+    model_config = ConfigDict(populate_by_name=True)

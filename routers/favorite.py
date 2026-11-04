@@ -50,5 +50,5 @@ async def get_favorite_list(
 
 @router.delete("/clear")
 async def clear_favorite(user:User=Depends(get_current_user),db:AsyncSession=Depends(db_config.get_db)):
-    result=await favorite.remove_news_favorite(db,user.id)
+    result = await favorite.remove_all_favorite(db, user.id)
     return success_response(message=f"清空了{result}条记录")
