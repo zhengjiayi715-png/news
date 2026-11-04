@@ -1,6 +1,7 @@
 # 新闻资讯平台 
 
 一个基于前后端分离架构的全栈新闻资讯应用。
+- **小白跟着视频做的第一个项目,轻喷**
 
 ## 功能特性
 
@@ -33,7 +34,7 @@ news-app/
 │   │   ├── router/          
 │   │   ├── store/           
 │   │   ├── views/           
-│   │   └── main.js                  
+│   │   └── main.js               
 │   ├── package.json
 │   └── vite.config.js
 │
@@ -44,9 +45,36 @@ news-app/
 │   ├── models/              
 │   ├── routers/             
 │   ├── schemas/             
-│   ├── utils/                               
+│   ├── utils/               
 │   ├── main.py              
 │   └── requirements.txt     
 │
 ├── .gitignore               
 └── README.md                
+```
+
+## 环境要求
+- Windows 11
+- Python 3.12
+- Node.js >= 18.0
+- MySQL >= 8.0
+- Redis >= 6.0
+
+## 快速开始
+
+```cmd
+#1.装前端环境，启动前端
+cd frontend
+npm install
+npm run dev
+#2.装后端环境，启动后端
+cd backend
+.venv\Scripts\activate
+pip install -r requirements.txt
+#3.3. 初始化数据库：
+请先在你的 MySQL 中创建数据库 news_app，然后导入项目根目录 backend/init_db.sql 文件。
+```
+
+## 环境变量配置
+- 后端中DB_PASSWORD=your_mysql_password
+- 因为 AI 对话直接在前端发起请求，你需要配置阿里云百炼的 API Key
